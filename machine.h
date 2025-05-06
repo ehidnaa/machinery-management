@@ -3,14 +3,17 @@
 
 #define MAX_STR 100
 
+// Enum for machine types
 typedef enum {
     TRACTOR, EXCAVATOR, ROLLER, CRANE, MIXER
 } MachineType;
 
+// Enum for number of breakdowns
 typedef enum {
     NEVER, LESS_THAN_THREE, LESS_THAN_FIVE, MORE_THAN_FIVE
 } BreakdownCount;
 
+// Structure representing a machine
 typedef struct Machine {
     char chassisNumber[MAX_STR];
     char make[MAX_STR];
@@ -28,7 +31,13 @@ typedef struct Machine {
     struct Machine *next;
 } Machine;
 
+// Insert machine in sorted order by chassis number
 Machine* addMachineSorted(Machine *head, Machine *newMachine);
+
+// Input machine details from user
+Machine* addMachineFromInput();
+
+// Display all machines
 void printMachines(Machine *head);
 
 #endif
