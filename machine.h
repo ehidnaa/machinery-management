@@ -49,4 +49,6 @@ void displayMachineByChassis(Machine *head, const char *chassis);
 
 void updateMachineByChassis(Machine *head, const char *chassis);
 
+Machine* deleteMachineByChassis(Machine *head, const char *chassis);
+
 #endif

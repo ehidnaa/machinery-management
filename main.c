@@ -44,6 +44,7 @@ int main() {
         printf("2. Show All Machines\n");
         printf("3. Display One Machine by Chassis Number\n");
         printf("4. Update Machine by Chassis Number\n");
+        printf("5. Delete Machine by Chassis Number\n");
         printf("0. Exit\n");
         printf("Choice: ");
         scanf("%d", &choice);
@@ -76,6 +77,14 @@ int main() {
                 printf("Enter chassis number to update: ");
                 scanf("%s", chassis);
                 updateMachineByChassis(head, chassis);
+                break;
+            }
+
+            case 5: {
+                char chassis[MAX_STR];
+                printf("Enter chassis number to delete: ");
+                scanf("%s", chassis);
+                head = deleteMachineByChassis(head, chassis);
                 break;
             }
 

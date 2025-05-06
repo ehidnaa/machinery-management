@@ -205,3 +205,30 @@ void updateMachineByChassis(Machine *head, const char *chassis) {
     }
     printf("Machine not found.\n");
 }
+
+// Delete a machine by chassis number
+Machine* deleteMachineByChassis(Machine *head, const char *chassis) {
+    Machine *current = head;
+    Machine *prev = NULL;
+
+    while (current) {
+        if (strcmp(current->chassisNumber, chassis) == 0) {
+            if (prev == NULL) {
+                Machine *temp = current->next;
+                free(current);
+                printf("Machine deleted.\n");
+                return temp;
+            } else {
+                prev->next = current->next;
+                free(current);
+                printf("Machine deleted.\n");
+                return head;
+            }
+        }
+        prev = current;
+        current = current->next;
+    }
+
+    printf("Machine not found.\n");
+    return head;
+}
