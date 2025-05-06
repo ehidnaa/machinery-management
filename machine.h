@@ -47,4 +47,6 @@ Machine* loadMachinesFromFile(const char *filename);
 // Search and display a machine by chassis number
 void displayMachineByChassis(Machine *head, const char *chassis);
 
+void updateMachineByChassis(Machine *head, const char *chassis);
+
 #endif

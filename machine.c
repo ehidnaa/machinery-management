@@ -181,3 +181,27 @@ void displayMachineByChassis(Machine *head, const char *chassis) {
     }
     printf("Machine not found.\n");
 }
+
+// Update a machine's details by chassis number
+void updateMachineByChassis(Machine *head, const char *chassis) {
+    Machine *current = head;
+    while (current) {
+        if (strcmp(current->chassisNumber, chassis) == 0) {
+            printf("Machine found. Updating...\n");
+
+            printf("Enter new valuation: ");
+            scanf("%f", &current->valuation);
+            printf("Enter new mileage: ");
+            scanf("%d", &current->mileage);
+            printf("Enter new next service mileage: ");
+            scanf("%d", &current->nextService);
+            printf("Enter new owner email: ");
+            scanf("%s", current->ownerEmail);
+
+            printf("Machine updated.\n");
+            return;
+        }
+        current = current->next;
+    }
+    printf("Machine not found.\n");
+}

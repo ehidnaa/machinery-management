@@ -43,13 +43,13 @@ int main() {
         printf("1. Add Machine\n");
         printf("2. Show All Machines\n");
         printf("3. Display One Machine by Chassis Number\n");
+        printf("4. Update Machine by Chassis Number\n");
         printf("0. Exit\n");
         printf("Choice: ");
         scanf("%d", &choice);
 
         switch (choice) {
             case 1: {
-                // Read new machine and insert into list
                 Machine *m = addMachineFromInput();
                 if (m) {
                     head = addMachineSorted(head, m);
@@ -60,16 +60,22 @@ int main() {
                 break;
             }
             case 2:
-                // Print all machines
                 printMachines(head);
                 break;
 
             case 3: {
-                // Search for machine by chassis number
                 char chassis[MAX_STR];
                 printf("Enter chassis number to search: ");
                 scanf("%s", chassis);
                 displayMachineByChassis(head, chassis);
+                break;
+            }
+
+            case 4: {
+                char chassis[MAX_STR];
+                printf("Enter chassis number to update: ");
+                scanf("%s", chassis);
+                updateMachineByChassis(head, chassis);
                 break;
             }
 
