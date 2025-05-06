@@ -4,7 +4,7 @@
 #include <unistd.h>
 #include "login.h"
 
-// Считываем логины из login.txt
+// Read logins from login.txt
 int loadLogins(Login logins[]) {
     FILE *file = fopen("login.txt", "r");
     if (!file) return 0;
@@ -17,7 +17,7 @@ int loadLogins(Login logins[]) {
     return 1;
 }
 
-// Проверяем, есть ли такой логин
+// Check if we have this login
 int validateLogin(Login logins[], const char *inputUser, const char *inputPass) {
     for (int i = 0; i < MAX_USERS; i++) {
         if (strcmp(logins[i].username, inputUser) == 0 && strcmp(logins[i].password, inputPass) == 0)
@@ -26,7 +26,7 @@ int validateLogin(Login logins[], const char *inputUser, const char *inputPass) 
     return 0;
 }
 
-// Скрытый ввод пароля (звёздочки)
+// Hidden pass input
 void getPassword(char *password) {
     struct termios oldt, newt;
     int ch, i = 0;
