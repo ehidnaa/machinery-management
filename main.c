@@ -5,7 +5,7 @@
 #include "machine.h"
 
 int main() {
-    Login logins[MAX_USERS];    
+    Login logins[MAX_USERS];
     char username[USERNAME_LEN];
     char password[PASSWORD_LEN];
 
@@ -15,9 +15,10 @@ int main() {
         return 1;
     }
 
+    // Load machines from file
     Machine *head = loadMachinesFromFile("fleet.txt");
     if (!head) {
-    printf("No machines loaded from file.\n");
+        printf("No machines loaded from file.\n");
     }
 
     // Ask for username and password
@@ -34,7 +35,6 @@ int main() {
 
     printf("Access granted\n");
 
-    Machine *head = NULL;
     int choice;
 
     // Main menu loop
@@ -42,6 +42,7 @@ int main() {
         printf("\n--- MENU ---\n");
         printf("1. Add Machine\n");
         printf("2. Show All Machines\n");
+        printf("3. Display One Machine by Chassis Number\n");
         printf("0. Exit\n");
         printf("Choice: ");
         scanf("%d", &choice);
@@ -62,15 +63,28 @@ int main() {
                 // Print all machines
                 printMachines(head);
                 break;
+
+            case 3: {
+                // Search for machine by chassis number
+                char chassis[MAX_STR];
+                printf("Enter chassis number to search: ");
+                scanf("%s", chassis);
+                displayMachineByChassis(head, chassis);
+                break;
+            }
+
             case 0:
                 printf("Exiting...\n");
                 break;
+
             default:
                 printf("Invalid choice.\n");
         }
 
     } while (choice != 0);
 
+    // Save machines to file before exiting
     saveMachinesToFile(head, "fleet.txt");
+
     return 0;
 }

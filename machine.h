@@ -44,4 +44,7 @@ void printMachines(Machine *head);
 void saveMachinesToFile(Machine *head, const char *filename);
 Machine* loadMachinesFromFile(const char *filename);
 
+// Search and display a machine by chassis number
+void displayMachineByChassis(Machine *head, const char *chassis);
+
 #endif

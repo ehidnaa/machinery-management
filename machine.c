@@ -155,3 +155,29 @@ Machine* loadMachinesFromFile(const char *filename) {
     fclose(file);
     return head;
 }
+
+// Display a machine with the given chassis number
+void displayMachineByChassis(Machine *head, const char *chassis) {
+    Machine *current = head;
+    while (current) {
+        if (strcmp(current->chassisNumber, chassis) == 0) {
+            printf("\n--- Machine Found ---\n");
+            printf("Chassis: %s\n", current->chassisNumber);
+            printf("Make: %s\n", current->make);
+            printf("Model: %s\n", current->model);
+            printf("Year: %d\n", current->year);
+            printf("Cost: %.2f\n", current->cost);
+            printf("Valuation: %.2f\n", current->valuation);
+            printf("Mileage: %d\n", current->mileage);
+            printf("Next Service: %d\n", current->nextService);
+            printf("Owner: %s\n", current->ownerName);
+            printf("Email: %s\n", current->ownerEmail);
+            printf("Phone: %s\n", current->ownerPhone);
+            printf("Type: %d\n", current->type);
+            printf("Breakdowns: %d\n", current->breakdowns);
+            return;
+        }
+        current = current->next;
+    }
+    printf("Machine not found.\n");
+}
