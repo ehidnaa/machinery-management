@@ -51,4 +51,6 @@ void updateMachineByChassis(Machine *head, const char *chassis);
 
 Machine* deleteMachineByChassis(Machine *head, const char *chassis);
 
+void generateReport(Machine *head, const char *filename);
+
 #endif

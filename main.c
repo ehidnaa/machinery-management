@@ -45,6 +45,7 @@ int main() {
         printf("3. Display One Machine by Chassis Number\n");
         printf("4. Update Machine by Chassis Number\n");
         printf("5. Delete Machine by Chassis Number\n");
+        printf("6. Generate Report\n");
         printf("0. Exit\n");
         printf("Choice: ");
         scanf("%d", &choice);
@@ -87,6 +88,10 @@ int main() {
                 head = deleteMachineByChassis(head, chassis);
                 break;
             }
+
+            case 6:
+                generateReport(head, "report.txt");
+                break;
 
             case 0:
                 printf("Exiting...\n");

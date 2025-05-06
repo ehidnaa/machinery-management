@@ -232,3 +232,28 @@ Machine* deleteMachineByChassis(Machine *head, const char *chassis) {
     printf("Machine not found.\n");
     return head;
 }
+
+// Generate a report file with all machine details
+void generateReport(Machine *head, const char *filename) {
+    FILE *file = fopen(filename, "w");
+    if (!file) {
+        printf("Cannot open report file.\n");
+        return;
+    }
+
+    Machine *current = head;
+    fprintf(file, "MACHINERY REPORT\n-------------------\n");
+
+    while (current) {
+        fprintf(file, "Chassis: %s\nMake: %s\nModel: %s\nYear: %d\nValuation: %.2f\n\n",
+            current->chassisNumber,
+            current->make,
+            current->model,
+            current->year,
+            current->valuation);
+        current = current->next;
+    }
+
+    fclose(file);
+    printf("Report saved to %s\n", filename);
+}
