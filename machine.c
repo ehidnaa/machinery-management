@@ -88,3 +88,70 @@ Machine* addMachineFromInput() {
     m->next = NULL;
     return m;
 }
+
+// Save all machines to file
+void saveMachinesToFile(Machine *head, const char *filename) {
+    FILE *file = fopen(filename, "w");
+    if (!file) {
+        printf("Could not open file for saving.\n");
+        return;
+    }
+
+    Machine *current = head;
+    while (current) {
+        fprintf(file, "%s|%s|%s|%d|%.2f|%.2f|%d|%d|%s|%s|%s|%d|%d\n",
+            current->chassisNumber,
+            current->make,
+            current->model,
+            current->year,
+            current->cost,
+            current->valuation,
+            current->mileage,
+            current->nextService,
+            current->ownerName,
+            current->ownerEmail,
+            current->ownerPhone,
+            current->type,
+            current->breakdowns
+        );
+        current = current->next;
+    }
+
+    fclose(file);
+}
+
+// Load machines from file into linked list
+Machine* loadMachinesFromFile(const char *filename) {
+    FILE *file = fopen(filename, "r");
+    if (!file) return NULL;
+
+    Machine *head = NULL;
+    char line[512];
+
+    while (fgets(line, sizeof(line), file)) {
+        Machine *m = malloc(sizeof(Machine));
+        if (!m) continue;
+
+        sscanf(line, "%[^|]|%[^|]|%[^|]|%d|%f|%f|%d|%d|%[^|]|%[^|]|%[^|]|%d|%d",
+            m->chassisNumber,
+            m->make,
+            m->model,
+            &m->year,
+            &m->cost,
+            &m->valuation,
+            &m->mileage,
+            &m->nextService,
+            m->ownerName,
+            m->ownerEmail,
+            m->ownerPhone,
+            (int*)&m->type,
+            (int*)&m->breakdowns
+        );
+
+        m->next = NULL;
+        head = addMachineSorted(head, m);
+    }
+
+    fclose(file);
+    return head;
+}

@@ -40,4 +40,8 @@ Machine* addMachineFromInput();
 // Display all machines
 void printMachines(Machine *head);
 
+// Save and load machines to/from file
+void saveMachinesToFile(Machine *head, const char *filename);
+Machine* loadMachinesFromFile(const char *filename);
+
 #endif

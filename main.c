@@ -5,7 +5,7 @@
 #include "machine.h"
 
 int main() {
-    Login logins[MAX_USERS];
+    Login logins[MAX_USERS];    
     char username[USERNAME_LEN];
     char password[PASSWORD_LEN];
 
@@ -13,6 +13,11 @@ int main() {
     if (!loadLogins(logins)) {
         printf("Error loading login file\n");
         return 1;
+    }
+
+    Machine *head = loadMachinesFromFile("fleet.txt");
+    if (!head) {
+    printf("No machines loaded from file.\n");
     }
 
     // Ask for username and password
@@ -66,5 +71,6 @@ int main() {
 
     } while (choice != 0);
 
+    saveMachinesToFile(head, "fleet.txt");
     return 0;
 }
